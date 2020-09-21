@@ -1,25 +1,25 @@
-/* 10. ¹è¿­ - »ðÀÔ, ¼öÁ¤, »èÁ¦ ¿¬½À */
+/* 10. ë°°ì—´ - ì‚½ìž…, ìˆ˜ì •, ì‚­ì œ ì—°ìŠµ */
 
 #include <stdio.h>
 
 int main() {
 	int location, value;
-	int size = 5; //¹è¿­ÀÇ Å©±â
+	int size = 5; //ë°°ì—´ì˜ í¬ê¸°
 	int arr[100] = { 1,2,3,4,5 };
-	// *arr = { 1,2,3,4,5 }; //ÀÌ·¸°Ô ¾È µÊ???
+	// *arr = { 1,2,3,4,5 }; //ì´ë ‡ê²Œ ì•ˆ ë¨???
 
-	// 1. »ðÀÔ
+	// 1. ì‚½ìž…
 	printf("arr = { 1,2,3,4,5 }\n");
-	printf("»ðÀÔÇÒ À§Ä¡: ");
+	printf("ì‚½ìž…í•  ìœ„ì¹˜: ");
 	scanf_s("%d", &location);
-	location -= 1; //ÀÎµ¦½º´Â 0ºÎÅÍ ½ÃÀÛÇÏ¹Ç·Î 1À» »©ÁØ´Ù
+	location -= 1; //ì¸ë±ìŠ¤ëŠ” 0ë¶€í„° ì‹œìž‘í•˜ë¯€ë¡œ 1ì„ ë¹¼ì¤€ë‹¤
 
-	printf("»ðÀÔÇÒ °ª: ");
+	printf("ì‚½ìž…í•  ê°’: ");
 	scanf_s("%d", &value);
 
 	for (int i = size; i >= location; i--)
-		arr[i + 1] = arr[i]; //ÇÑ Ä­¾¿ ¹Ð±â
-	arr[location] = value; //¹Ýº¹¹® ³¡³ª°í À§Ä¡¿¡ °ª ³Ö¾îÁØ´Ù
+		arr[i + 1] = arr[i]; //í•œ ì¹¸ì”© ë°€ê¸°
+	arr[location] = value; //ë°˜ë³µë¬¸ ëë‚˜ê³  ìœ„ì¹˜ì— ê°’ ë„£ì–´ì¤€ë‹¤
 	size += 1;
 
 	for (int i = 0; i < size; i++)
@@ -29,13 +29,13 @@ int main() {
 	return 0;
 }
 
-//¿¹Àü¿¡ °úÁ¦ÇÒ ¶§ ÀÎµ¦½º ¶§¹®¿¡ Çò°¥·È´ø ºÎºÐ. ¿Ö location¿¡ 2¸¦ »©Áá¾î¾ßÇß´ÂÁö Çò°¥·È´Âµ¥ ÀÌÁ¦ ¾Ë¾Ò´ç. Â÷±ÙÂ÷±ÙÇÏ±â~!
-// µ¿Àû ¹è¿­ÀÌ ¾Æ´Ï¹Ç·Î, ½ÇÁ¦ °ªÀÌ µé¾îÀÖ´Â ¸¸Å­À» ÀÔ·Â¹Þ°Å³ª º¯¼ö ÁöÁ¤ÇØÁà¾ß ÇÔ //sizeof(arr)ÇÏ¸é 100 ³ª¿È
+//ì˜ˆì „ì— ê³¼ì œí•  ë•Œ ì¸ë±ìŠ¤ ë•Œë¬¸ì— í—·ê°ˆë ¸ë˜ ë¶€ë¶„. ì™œ locationì— 2ë¥¼ ë¹¼ì¤¬ì–´ì•¼í–ˆëŠ”ì§€ í—·ê°ˆë ¸ëŠ”ë° ì´ì œ ì•Œì•˜ë‹¹. ì°¨ê·¼ì°¨ê·¼í•˜ê¸°~!
+// ë™ì  ë°°ì—´ì´ ì•„ë‹ˆë¯€ë¡œ, ì‹¤ì œ ê°’ì´ ë“¤ì–´ìžˆëŠ” ë§Œí¼ì„ ìž…ë ¥ë°›ê±°ë‚˜ ë³€ìˆ˜ ì§€ì •í•´ì¤˜ì•¼ í•¨ //sizeof(arr)í•˜ë©´ 100 ë‚˜ì˜´
 
-/* ¹è¿­¿¡ ´ëÇØ¼­...
-	¹è¿­ ÃÊ±âÈ­´Â ¼±¾ðÇÒ ¶§ ÇÏ°Å³ª, ÀÎµ¦½º ÇÏ³ªÇÏ³ª Á¢±ÙÇØ¼­ ÇØÁà¾ß ÇÔ.
+/* ë°°ì—´ì— ëŒ€í•´ì„œ...
+	ë°°ì—´ ì´ˆê¸°í™”ëŠ” ì„ ì–¸í•  ë•Œ í•˜ê±°ë‚˜, ì¸ë±ìŠ¤ í•˜ë‚˜í•˜ë‚˜ ì ‘ê·¼í•´ì„œ í•´ì¤˜ì•¼ í•¨.
 	
 	>> int arr[100] = {1,2,3,4,5}; ( O )
 	>> arr[0] = 1; ( O )
-	>> arr = {1,2,3,4,5}; ( X ) //ÀÌ¹Ì ¼±¾ðµÈ ÈÄ¿¡ ÀÌ·¸°Ô´Â X
+	>> arr = {1,2,3,4,5}; ( X ) //ì´ë¯¸ ì„ ì–¸ëœ í›„ì— ì´ë ‡ê²ŒëŠ” X 
 */
