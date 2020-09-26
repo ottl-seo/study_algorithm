@@ -1,4 +1,4 @@
-/* Ã¥ ¿¹Á¦ 14. ¹®ÀÚ °Ë»ö ÇÔ¼ö ¸¸µé±â */
+/* Cê¸¸ë¼ì¡ì´ ì±… ì˜ˆì œ 14. ë¬¸ì ê²€ìƒ‰ í•¨ìˆ˜ ë§Œë“¤ê¸° */
 
 #include <stdio.h>
 #include <string.h>
@@ -10,21 +10,21 @@ int main() {
 	char* position_1; 
 	char* position_2;
 
-	strcpy_s(string, "My name is Yoonseo."); //string ¿¡ º¹»ç
-	position_1 = strchr(string, 'a'); // <string.h>¿¡ ³»ÀåµÇ¾îÀÖ´Â ¹®ÀÚ °Ë»ö ÇÔ¼ö -- position¿¡´Â ÀÎµ¦½º °ªÀÌ µé¾î°¨
-	printf("%d À§Ä¡¿¡ a°¡ ÀÖÀ½\n", position_1 - string); // stringÀº ¹®ÀÚ¿­ ¹è¿­ÀÇ ½ÃÀÛ À§Ä¡ ³ªÅ¸³»¹Ç·Î..
+	strcpy_s(string, "My name is Yoonseo."); //string ì— ë³µì‚¬
+	position_1 = strchr(string, 'a'); // <string.h>ì— ë‚´ì¥ë˜ì–´ìˆëŠ” ë¬¸ì ê²€ìƒ‰ í•¨ìˆ˜ -- positionì—ëŠ” ì¸ë±ìŠ¤ ê°’ì´ ë“¤ì–´ê°
+	printf("%d ìœ„ì¹˜ì— aê°€ ìˆìŒ\n", position_1 - string); // stringì€ ë¬¸ìì—´ ë°°ì—´ì˜ ì‹œì‘ ìœ„ì¹˜ ë‚˜íƒ€ë‚´ë¯€ë¡œ..
 
 	position_2 = strChr(string, 'a');
-	printf("%d À§Ä¡¿¡ a°¡ ÀÖÀ½\n", position_2 - string);
+	printf("%d ìœ„ì¹˜ì— aê°€ ìˆìŒ\n", position_2 - string);
 	
 	return 0;
 }
 char* strChr(const char* pstring, char ch) {
 	
-	while (*pstring && *pstring != ch) { // *pstringÀÌ ³¡³ªÁö ¾Ê¾ÒÀ» ¶§ && *pstringÀÌ ch°¡ ¾Æ´Ò ¶§
+	while (*pstring && *pstring != ch) { // *pstringì´ ëë‚˜ì§€ ì•Šì•˜ì„ ë•Œ && *pstringì´ chê°€ ì•„ë‹ ë•Œ
 		pstring++;
 	}
-	if (*pstring == ch) //ch¶û *pstring µÑ´Ù ¹®ÀÚ¿­ÀÌ ¾Æ´Ï¶ó ¹®ÀÚ ÇÏ³ª ÀÌ¹Ç·Î == ¿¬»êÀÚ °¡´É
-		return (char*)pstring; //ÁÖ¼Ò°ªÀ¸·Î Àü´Ş???
+	if (*pstring == ch) //chë‘ *pstring ë‘˜ë‹¤ ë¬¸ìì—´ì´ ì•„ë‹ˆë¼ ë¬¸ì í•˜ë‚˜ ì´ë¯€ë¡œ == ì—°ì‚°ì ê°€ëŠ¥
+		return (char*)pstring; //ì£¼ì†Œê°’ìœ¼ë¡œ ì „ë‹¬???
 	return (char*)0;
 }
