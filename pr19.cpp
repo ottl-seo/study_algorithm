@@ -1,5 +1,5 @@
 /* week4 이중연결리스트
-	-- MP3 재생 프로그램 */
+	- MP3 재생 프로그램 */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
