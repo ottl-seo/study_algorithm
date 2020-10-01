@@ -1,19 +1,19 @@
-/* Ã¥ ¿¹Á¦ 20. °ø¹é ¹®ÀÚ Á¦°Å(left)
-	(isspace(*str)==1)ÀÌ¸é, ...~  */
+/* ì±… ì˜ˆì œ 20. ê³µë°± ë¬¸ì ì œê±°(left)
+	(isspace(*str)==1)ì´ë©´, ...~  */
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h> //isspace() ÇÔ¼ö
-// #include <stdlib.h> --malloc ¾î¶»°Ô ¾²´Â°ÅÁö....
+#include <ctype.h> //isspace() í•¨ìˆ˜
+// #include <stdlib.h> --malloc ì–´ë–»ê²Œ ì“°ëŠ”ê±°ì§€....
 
 char* remove_sp(char* strr);
 
 int main(){
-	//char* strr = (char*)malloc(sizeof(char)); //¹®ÀÚ¿­
+	//char* strr = (char*)malloc(sizeof(char)); //ë¬¸ìì—´
 	char strr[100];
 	char* tlqkf;
 	/*
 	printf("Input String: ");
-	scanf_s("%s", strr); //ÀÔ·Â¹Ş±â %s, Æ÷ÀÎÅÍ ÂüÁ¶´Â ¾ø´Ù
+	scanf_s("%s", strr); //ì…ë ¥ë°›ê¸° %s, í¬ì¸í„° ì°¸ì¡°ëŠ” ì—†ë‹¤
 	*/
 	strcpy_s(strr, "\n\t  hi");
 	printf("<< Before >>%s\n", strr);
@@ -23,13 +23,10 @@ int main(){
 	return 0;
 }
 char* remove_sp(char* strr) {
-	int i = 0;
-	char ch = *(strr + i);
-
 	while (*strr) {
-		if (!isspace(*strr) == 1) { return strr; } //ºí·©Å© ¾Æ´Ï¸é ±×´ë·Î ¸®ÅÏ
+		if (!isspace(*strr) == 1) { return strr; } //ë¸”ë­í¬ ì•„ë‹ˆë©´ ê·¸ëŒ€ë¡œ ë¦¬í„´
 		else
 			*strr++;
 	}
-	return (char*)""; //ºó ¹®ÀÚ¿­ ¸®ÅÏ
+	return (char*)""; //ë¹ˆ ë¬¸ìì—´ ë¦¬í„´
 }
