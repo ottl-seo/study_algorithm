@@ -1,15 +1,15 @@
-/* ¿¹Á¦ 20-2. ¹®ÀÚ¿­ ¿À¸¥ÂÊ °ø¹é ¾ø¾Ö±â  */
-// strlen ÀÌ¿ëÇÏ±â~~~
+/* ì˜ˆì œ 20-2. ë¬¸ìì—´ ì˜¤ë¥¸ìª½ ê³µë°± ì—†ì• ê¸°  */
+// strlen ì´ìš©í•˜ê¸°~~~
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
 
-char* remove_right(char* strr); //¿À¸¥ÂÊ °ø¹é ¾ø¾Ö±â ÇÔ¼ö
+char* remove_right(char* strr); //ì˜¤ë¥¸ìª½ ê³µë°± ì—†ì• ê¸° í•¨ìˆ˜
 
 int main() {
 	char strr[100]; //
 	char* strm;
-	strcpy_s(strr, "hi \t"); //strr¿¡ °ª ÀúÀå
+	strcpy_s(strr, "hi \t"); //strrì— ê°’ ì €ì¥
 	
 	strm = remove_right(strr);
 	printf("<< Before >>\n[%s]", strr);
@@ -20,10 +20,10 @@ int main() {
 }
 char* remove_right(char* strr) {
 	char* start = strr;
-	while (*strr) { //¹®ÀÚ¿­ ³²¾ÆÀÖÀ» ¶§- Á¶°Ç ÀÌ·¸°Ô
-		strr++; //³¡±îÁö
+	while (*strr) { //ë¬¸ìì—´ ë‚¨ì•„ìˆì„ ë•Œ- ì¡°ê±´ ì´ë ‡ê²Œ
+		strr++; //ëê¹Œì§€
 	}
-	strr--; //ÇÏ³ª ÁÙ¿©ÁÖ°í,
+	strr--; //í•˜ë‚˜ ì¤„ì—¬ì£¼ê³ ,
 	while (start <= strr) {
 		if (!isspace(*strr)) {
 			*++strr = '\0';
