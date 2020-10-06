@@ -1,23 +1,26 @@
-/* ½ºÅÃÀÇ ÀÀ¿ë: °ıÈ£½Ö °Ë»ç */
+/* ---------ì‹¤í–‰ ì—ëŸ¬ë‚¨ ---------- ì •ë‹µ ì½”ë“œëŠ” pr29.30ì—
+ì´ê±´ ë™ì í• ë‹¹ ì—°ìŠµìš©ìœ¼ë¡œ ë‚¨ê¹€,, */
+
+/* ìŠ¤íƒì˜ ì‘ìš©: ê´„í˜¸ìŒ ê²€ì‚¬ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #define MAX 100
 
-typedef char element; //element´Â char Å¸ÀÔ
+typedef char element; //elementëŠ” char íƒ€ì…
 typedef struct stack {
-	element *ch; //¹®ÀÚ ¹è¿­. ¿©±â¿¡ ½×´Â´Ù. init()¿¡¼­ µ¿ÀûÇÒ´ç ÇÒ°Í
-	int capacity; //¹è¿­ Å©±â(¹®ÀÚ¿­ÀÇ ±æÀÌ)
-	int top; //ÃÖ°í ¿ø¼ÒÀÇ ÀÎµ¦½º
+	element *ch; //ë¬¸ì ë°°ì—´. ì—¬ê¸°ì— ìŒ“ëŠ”ë‹¤. init()ì—ì„œ ë™ì í• ë‹¹ í• ê²ƒ
+	int capacity; //ë°°ì—´ í¬ê¸°(ë¬¸ìì—´ì˜ ê¸¸ì´)
+	int top; //ìµœê³  ì›ì†Œì˜ ì¸ë±ìŠ¤
 }stack;
 
-void init(stack* s) { //½ºÅÃ ÃÊ±âÈ­ ÇÔ¼ö
+void init(stack* s) { //ìŠ¤íƒ ì´ˆê¸°í™” í•¨ìˆ˜
 	s->top = -1;
 	s->capacity = 1;
 	s->ch = (element*)malloc(s->capacity * sizeof(element));
 }
 void error(const char* message) {
-	fprintf(stderr, message); //¿À·ù ¸Ş½ÃÁö Ãâ·Â ÇÔ¼ö
+	fprintf(stderr, message); //ì˜¤ë¥˜ ë©”ì‹œì§€ ì¶œë ¥ í•¨ìˆ˜
 }
 bool is_full(stack* s) {
 	if (s->top == s->capacity - 1) { return true; }
@@ -27,10 +30,10 @@ bool is_empty(stack *s){
 	if (s->top == -1) { return true; }
 	else { return false; }
 }
-element pop(stack* s) { //pop ÇÔ¼ö
+element pop(stack* s) { //pop í•¨ìˆ˜
 	if (is_full(s)) {
-		s->capacity *= 2; //2¹è·Î ´Ã·ÁÁÖ°í
-		s->ch = (element*)realloc(s->ch, s->capacity * sizeof(element)); //´Ù½Ã ÇÒ´çÇØÁØ´Ù
+		s->capacity *= 2; //2ë°°ë¡œ ëŠ˜ë ¤ì£¼ê³ 
+		s->ch = (element*)realloc(s->ch, s->capacity * sizeof(element)); //ë‹¤ì‹œ í• ë‹¹í•´ì¤€ë‹¤
 	}
 	else { return (s->ch[s->top--]); }
 }
@@ -40,14 +43,14 @@ void push(stack* s, element item) {
 		exit(1);
 	}
 	else {
-		s->ch[++(s->top)] = item; //itemÀ» ´ÙÀ½ top¿¡ ³Ö¾îÁØ´Ù
+		s->ch[++(s->top)] = item; //itemì„ ë‹¤ìŒ topì— ë„£ì–´ì¤€ë‹¤
 	}
 }
 int main(){
-	char input[MAX]; //ÀÔ·Â¹ŞÀ» ¶© µ¿ÀûÇÒ´ç¸»°í ¹è¿­[MAX]·Î ÁöÁ¤...?!
-	int i = 0; int length = 0; //for¹®¿¡ »ç¿ë
+	char input[MAX]; //ì…ë ¥ë°›ì„ ë• ë™ì í• ë‹¹ë§ê³  ë°°ì—´[MAX]ë¡œ ì§€ì •...?!
+	int i = 0; int length = 0; //forë¬¸ì— ì‚¬ìš©
 	bool is_correct = true;
-	stack* mystack = (stack*)malloc(sizeof(stack)); //mystack Á¤ÀÇ
+	stack* mystack = (stack*)malloc(sizeof(stack)); //mystack ì •ì˜
 
 	printf("Input expression\n");
 	scanf_s("%s", input);
@@ -75,7 +78,7 @@ int main(){
 				break;
 			}
 		default:
-			break; //ÀÌ¿ÜÀÇ °ªÀÏ °æ¿ì ½ºÅÃ°ú °ü°è¾øÀÌ ±×³É ´ÙÀ½°ªÀ¸·Î ÀÌµ¿
+			break; //ì´ì™¸ì˜ ê°’ì¼ ê²½ìš° ìŠ¤íƒê³¼ ê´€ê³„ì—†ì´ ê·¸ëƒ¥ ë‹¤ìŒê°’ìœ¼ë¡œ ì´ë™
 		}
 	}
 
@@ -87,9 +90,9 @@ int main(){
 	return 0;
 	/*
 	* 
-	while (*input) { //ºñ¾îÀÖÁö ¾ÊÀ¸¸é
-		if (is_correct == false) { break; } //false°¡ µÇ¸é ¹İº¹¹® ³ª°£´Ù
-		switch (*input) //*input ÇÑ ±ÛÀÚ
+	while (*input) { //ë¹„ì–´ìˆì§€ ì•Šìœ¼ë©´
+		if (is_correct == false) { break; } //falseê°€ ë˜ë©´ ë°˜ë³µë¬¸ ë‚˜ê°„ë‹¤
+		switch (*input) //*input í•œ ê¸€ì
 		{
 		case '<': case '{': case '[':
 			push(mystack, *input);
@@ -110,14 +113,14 @@ int main(){
 				break;
 			}
 		default:
-			break; //ÀÌ¿ÜÀÇ °ªÀÏ °æ¿ì ½ºÅÃ°ú °ü°è¾øÀÌ ±×³É ´ÙÀ½°ªÀ¸·Î ÀÌµ¿
+			break; //ì´ì™¸ì˜ ê°’ì¼ ê²½ìš° ìŠ¤íƒê³¼ ê´€ê³„ì—†ì´ ê·¸ëƒ¥ ë‹¤ìŒê°’ìœ¼ë¡œ ì´ë™
 		}
-		input++; // µÚ·Î ÀÌµ¿
+		input++; // ë’¤ë¡œ ì´ë™
 	}
 	* 
 	* 
 	*/
 }
-/* input++ ÀÌ·¸°Ô ¹®ÀÚ¹è¿­ ´Ù·ê ¼ö ÀÖÀ» ¶§´Â? strcpy¸¦ ÅëÇØ ¹®ÀÚ¿­ Á¦´ë·Î Á¤ÇØÁ³À»¶§.
-	¹®ÀÚ¿­ ÀÔ·Â¹Ş´Â °æ¿ì´Â ÇÒ ¼ö ¾øÀ½ --?????? ¸Â³ª....
+/* input++ ì´ë ‡ê²Œ ë¬¸ìë°°ì—´ ë‹¤ë£° ìˆ˜ ìˆì„ ë•ŒëŠ”? strcpyë¥¼ í†µí•´ ë¬¸ìì—´ ì œëŒ€ë¡œ ì •í•´ì¡Œì„ë•Œ.
+	ë¬¸ìì—´ ì…ë ¥ë°›ëŠ” ê²½ìš°ëŠ” í•  ìˆ˜ ì—†ìŒ --?????? ë§ë‚˜....
 */
