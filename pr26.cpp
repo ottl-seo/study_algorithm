@@ -1,19 +1,19 @@
-/* 5-2. ±¸Á¶Ã¼ ³»ÀÇ ¹è¿­ »ç¿ë ¿¹Á¦ */
+/* 5-2. êµ¬ì¡°ì²´ ë‚´ì˜ ë°°ì—´ ì‚¬ìš© ì˜ˆì œ */
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX 100
 
 typedef int element;
 typedef struct StackType {
-	element data[MAX]; //¹è¿­ÀÇ ¿ä¼Ò (element Å¸ÀÔ)
-	int top; //top°ªÀ» ¸â¹ö·Î Æ÷ÇÔÇÔ. topÀº ÃÖ°í ¿ø¼ÒÀÇ ÀÎµ¦½º
+	element data[MAX]; //ë°°ì—´ì˜ ìš”ì†Œ (element íƒ€ìž…)
+	int top; //topê°’ì„ ë©¤ë²„ë¡œ í¬í•¨í•¨. topì€ ìµœê³  ì›ì†Œì˜ ì¸ë±ìŠ¤
 }StackType;
 
-void init_stack(StackType* s) { //½ºÅÃ ÃÊ±âÈ­- ±¸Á¶Ã¼ Æ÷ÀÎÅÍ¸¦ ÀÎÀÚ·Î Àü´Þ¹ÞÀ½
-	s->top = -1; // top ÃÊ±â»óÅÂ´Â -1
+void init_stack(StackType* s) { //ìŠ¤íƒ ì´ˆê¸°í™”- êµ¬ì¡°ì²´ í¬ì¸í„°ë¥¼ ì¸ìžë¡œ ì „ë‹¬ë°›ìŒ
+	s->top = -1; // top ì´ˆê¸°ìƒíƒœëŠ” -1
 }
 void error(const char* string) {
-	fprintf(stderr, string); //¿¡·¯ ¸Þ½ÃÁö Ãâ·Â
+	fprintf(stderr, string); //ì—ëŸ¬ ë©”ì‹œì§€ ì¶œë ¥
 }
 bool is_full(StackType* s);
 bool is_empty(StackType* s);
@@ -23,13 +23,13 @@ void push(StackType* s, element e);
 int main() {
 	int input;
 	int count=0;
-	StackType s; //±¸Á¶Ã¼ º¯¼ö s ¼±¾ð
-	init_stack(&s); //±¸Á¶Ã¼ ÃÊ±âÈ­!!!
+	StackType s; //êµ¬ì¡°ì²´ ë³€ìˆ˜ s ì„ ì–¸
+	init_stack(&s); //êµ¬ì¡°ì²´ ì´ˆê¸°í™”!!!
 	
 	printf("Input Integer to push stack: ");
 	scanf_s("%d", &input);
 	while (input != 0) {
-		push(&s, input); //½ºÅÃ¿¡ ³Ö´Â´Ù
+		push(&s, input); //ìŠ¤íƒì— ë„£ëŠ”ë‹¤
 		count++;
 
 		printf("Input Integer to push stack: ");
@@ -57,7 +57,7 @@ element pop(StackType* s) {
 		exit(1);
 	}
 	else {
-		return (s->data[s->top--]); //topÀÌ ³ªÁß¿¡ --, data´Â ¹è¿­ÀÌ¹Ç·Î []
+		return (s->data[s->top--]); //topì´ ë‚˜ì¤‘ì— --, dataëŠ” ë°°ì—´ì´ë¯€ë¡œ []
 	}
 }
 void push(StackType* s, element value) {
@@ -66,13 +66,14 @@ void push(StackType* s, element value) {
 		return;
 	}
 	else {
-		s->data[++(s->top)] = value; // ++¸ÕÀú, s->dataÀÇ top °ª¿¡ value ÀúÀå.
+		s->data[++(s->top)] = value; // ++ë¨¼ì €, s->dataì˜ top ê°’ì— value ì €ìž¥.
 	}
 }
 
 /*
-* ÀÎÀÚ·Î Æ÷ÀÎÅÍ(*s) ¹ÞÀ¸¸é, ¸Å°³º¯¼ö º¸³¾¶§´Â ¹«Á¶°Ç "ÁÖ¼Ò°ª"À¸·Î º¸³½´Ù
-	-- *s ·Î Á¤ÀÇÇÏ¸é, s°¡ ÁÖ¼Ò°ª/ *s°¡ °ª ÀÌ¹Ç·Î, (s)·Î º¸³»¸é µÊ
-	-- s ·Î Á¤ÀÇÇÏ¸é, s°¡ °ª/ &s°¡ ÁÖ¼Ò°ª ÀÌ¹Ç·Î, (&s)·Î º¸³»¸é µÊ
-* 
+* ì¸ìžë¡œ í¬ì¸í„°(*s) ë°›ìœ¼ë©´, ë§¤ê°œë³€ìˆ˜ ë³´ë‚¼ë•ŒëŠ” ë¬´ì¡°ê±´ "ì£¼ì†Œê°’"ìœ¼ë¡œ ë³´ë‚¸ë‹¤
+	-- *s ë¡œ ì •ì˜í•˜ë©´, sê°€ ì£¼ì†Œê°’/ *sê°€ ê°’ ì´ë¯€ë¡œ, (s)ë¡œ ë³´ë‚´ë©´ ë¨
+	-- s ë¡œ ì •ì˜í•˜ë©´, sê°€ ê°’/ &sê°€ ì£¼ì†Œê°’ ì´ë¯€ë¡œ, (&s)ë¡œ ë³´ë‚´ë©´ ë¨
+* êµ¬ì¡°ì²´ ì •ì˜í•  ë•Œ, *s (í¬ì¸í„°ë³€ìˆ˜)ë¡œ ì •ì˜ í•˜ë©´ ë™ì í• ë‹¹ í•´ì¤„ ê²ƒ !
+	ex) StackType *s = (StackType*)malloc(sizeof(StackType));
 */
