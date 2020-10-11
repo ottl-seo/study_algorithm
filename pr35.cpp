@@ -90,7 +90,6 @@ int poly_result(ListType* plist, int x) {
 	}
 	return result;
 }
-
 void printInfo(void) {
 	printf("====================\n");
 	printf("학과: 사이버보안전공\n");
