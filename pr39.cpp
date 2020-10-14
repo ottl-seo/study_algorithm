@@ -1,4 +1,4 @@
-/* ¿¬½À 1-1. ¹è¿­ ÀÌ¿ëÇÑ ¼±Çü Å¥ */
+/* week7 ì—°ìŠµ 1-1. ë°°ì—´ ì´ìš©í•œ ì„ í˜• í */
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX 5
@@ -11,7 +11,7 @@ typedef struct {
 }QueueType;
 
 void error(const char* message);
-void init(QueueType* q); //queue ÃÊ±âÈ­
+void init(QueueType* q); //queue ì´ˆê¸°í™”
 bool is_full(QueueType* q);
 bool is_empty(QueueType* q);
 void enqueue(QueueType* q, element item);
@@ -20,8 +20,8 @@ void print_queue(QueueType* q);
 
 int main() {
 	element item;
-	QueueType q; //queue Á¤ÀÇÇÏ°í, //µ¿ÀûÇÒ´ç ÇØ¾ßÇÏ³ª???
-	init(&q); //ÃÊ±âÈ­
+	QueueType q; //queue ì •ì˜í•˜ê³ , //ë™ì í• ë‹¹ í•´ì•¼í•˜ë‚˜???
+	init(&q); //ì´ˆê¸°í™”
 	enqueue(&q, 10); print_queue(&q);
 	enqueue(&q, 20); print_queue(&q);
 	enqueue(&q, 30); print_queue(&q);
@@ -34,23 +34,23 @@ int main() {
 	return 0;
 }
 
-/* ÇÔ¼ö Á¤À¸ÀÇ ------------------ */
+/* í•¨ìˆ˜ ì •ìœ¼ì˜ ------------------ */
 void error(const char* message) {
 	fprintf(stderr, "%s\n", message);
 	exit(1);
 }
-void init(QueueType* q) { //queue ÃÊ±âÈ­
-	q->front = q->rear = -1; //¼±Çü Å¥ÀÌ¹Ç·Î -1ºÎÅÍ ½ÃÀÛ. ¿øÇüÀº 0ºÎÅÍ, ¿¬°á¸®½ºÆ®´Â NULL·Î.
+void init(QueueType* q) { //queue ì´ˆê¸°í™”
+	q->front = q->rear = -1; //ì„ í˜• íì´ë¯€ë¡œ -1ë¶€í„° ì‹œì‘. ì›í˜•ì€ 0ë¶€í„°, ì—°ê²°ë¦¬ìŠ¤íŠ¸ëŠ” NULLë¡œ.
 }
 bool is_full(QueueType* q) {
-	return (q->rear == MAX - 1); //max°ª¿¡¼­ 1 »«°ª°ú rear°¡ °°À¸¸é full
+	return (q->rear == MAX - 1); //maxê°’ì—ì„œ 1 ëº€ê°’ê³¼ rearê°€ ê°™ìœ¼ë©´ full
 }
 bool is_empty(QueueType* q) {
-	return (q->rear == q->front); //rear°¡ front¿Í °°Àº °æ¿ì
+	return (q->rear == q->front); //rearê°€ frontì™€ ê°™ì€ ê²½ìš°
 }
 void enqueue(QueueType* q, element item) {
 	if (is_full(q)) { error("queue Overflow"); return; }
-	q->data[++q->rear] = item; //Áõ°¡ ¸ÕÀú, ÀÌÈÄ °ª ´ëÀÔ
+	q->data[++q->rear] = item; //ì¦ê°€ ë¨¼ì €, ì´í›„ ê°’ ëŒ€ì…
 }
 element dequeue(QueueType* q) {
 	if (is_empty(q)) { error("queue empty"); return -1; }
