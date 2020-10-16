@@ -65,11 +65,9 @@ void enqueue(QueueType* q, element item) {
 element dequeue(QueueType* q) {
 	if (is_empty(q)) { error("queue is empty"); }
 	QueueNode* temp = q->front;
-	element data = temp->data;
-	if (q->front == q->rear) { //노드가 한 개있는 경우- 빈 큐로 만들어줌
-		q->front = q->rear = NULL; 
-	} else { q->front = q->front->link; } //else- front위치를 옮겨준다
-	
+	element data = temp->data; //리턴할 값
+	q->front = q->front->link; //front위치를 옮겨준다
+	if (q->front == NULL) { q->rear = NULL; } //front가 NULL -노드가 한 개있는 경우 --빈 큐로 만들어줌
 	free(temp); //dequeue한 노드 동적할당을 풀어준다
 	return data;
 }
