@@ -71,7 +71,6 @@ void print_reverse(dListNode* head) { //역순 출력 함수
 		printf("  %d  <->", p->num);
 	printf("  %d", p->num);
 }
-
 void printInfo() {
 	printf("====================\n");
 	printf("학과: 사이버보안전공\n");
