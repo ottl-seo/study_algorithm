@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef int element; //int 타입의 element 자료형 정의
+typedef int element; //int 타입의 element 자료형
 typedef struct ListNode {
 	element num; //사용자가 입력하는 정수
 	ListNode* link; //노드 연결에 사용할 link
