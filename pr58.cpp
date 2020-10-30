@@ -1,5 +1,5 @@
-/* tree_pr4.·¹º§ ¼øÈ¸ ÄÚµå 
-	- ¾È µ¹¾Æ°¨ ¿Ö???? */
+/* tree_pr4.ë ˆë²¨ ìˆœíšŒ ì½”ë“œ 
+	- ì•ˆ ëŒì•„ê° ì™œ???? */
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX 100
@@ -38,15 +38,15 @@ element dequeue(QueueType* q) {
 	q->front = (q->front + 1) % MAX;
 	return q->data[q->front];
 }
-void level_order(TreeNode* ptr) { //tree³ëµå ptrÀ» Å¥¿¡ ³Ö¾î ·¹º§ ¼øÈ¸
+void level_order(TreeNode* ptr) { //treeë…¸ë“œ ptrì„ íì— ë„£ì–´ ë ˆë²¨ ìˆœíšŒ
 	QueueType q;
 	init_queue(&q);
 	if (ptr == NULL)return;
-	enqueue(&q, ptr); //root°ªÀ» enqueue
-	while (!is_empty(&q)) { //q¿¡ µ¥ÀÌÅÍ°¡ ÀÖ´Â µ¿¾È dequeue
+	enqueue(&q, ptr); //rootê°’ì„ enqueue
+	while (!is_empty(&q)) { //qì— ë°ì´í„°ê°€ ìˆëŠ” ë™ì•ˆ dequeue
 		ptr = dequeue(&q);
 		printf("[%d]", ptr->data);
-		if (ptr->left)enqueue(&q, ptr->left); //dequeue ÇÏ°í ³ª¼­ ÇÏÀ§ µÎ°³ child¸¦ enqueue
+		if (ptr->left)enqueue(&q, ptr->left); //dequeue í•˜ê³  ë‚˜ì„œ í•˜ìœ„ ë‘ê°œ childë¥¼ enqueue
 		if (ptr->right)enqueue(&q, ptr->right);
 	}
 }
@@ -59,7 +59,8 @@ TreeNode n6 = { 6,&n2,&n5 };
 TreeNode* root = &n6;
 
 int main() {
-	printf("·¹º§ ¼øÈ¸\n");
+	
+	printf("ë ˆë²¨ ìˆœíšŒ\n");
 	level_order(root);
 	printf("\n");
 
