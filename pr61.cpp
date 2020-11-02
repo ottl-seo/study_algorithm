@@ -4,7 +4,6 @@ double iterative(int n); //반복함수
 double recursive(int n); //재귀함수
 
 int main() {
-
 	int n; //입력받을 양의 정수
 	while (true) {
 		printf("양의 정수 입력: ");
