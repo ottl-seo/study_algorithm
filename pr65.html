@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QZ0H0Q8TK7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-QZ0H0Q8TK7');
+    </script>
+    <title>Character Test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/loading.css">
+        <!-- Chrome, Safari, IE -->
+    <link rel="shortcut icon" href="/image/favicon.png">
+        <!-- Firefox, Opera (Chrome and Safari say thanks but no thanks) -->
+    <link rel="icon" href="/image/favicon.png">
+        <!-- favicon -->
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+    <meta name="msapplication-TileImage" content="/path/to/favicon-144.png">
+    <meta name="msapplication-TileImage" content="/image/favicon.png">
+  </head>
+
+  <body class="container-fluid" id="background">  
+    <script src="/js/event.js" type="text/javascript"></script>
+    <script src="/js/loading.js" type="text/javascript"></script>
+    
+    <div class="row-fluid" onload="rotate()">
+      <div class="header" id="page_logo">
+          <img src="/image/description.png">
+      </div>
+  
+      <div class="main">
+        <div class="main-test" id="page_title">
+          <img src="/image/title.png">
+        </div>
+    
+        <h2 class="main-title" id="page_number">
+            <img src="/image/start.png">
+        </h2>
+        <div class="main-description" id="page_question"></div>
+  
+        <div id="loading"></div>
+        <div class="main-button" id="page_button">
+          <input type="button" value="" class="button_start" onclick='start();textchange()'>
+        </div>
+      </div>
+  
+      <div class="footer">
+        ⓒ 2020. Ewhaian. All rights reserved.
+      </div>
+    </div>
+  </body>  
+</html>
