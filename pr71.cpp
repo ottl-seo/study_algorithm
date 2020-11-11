@@ -7,7 +7,6 @@ typedef struct GraphNode {
 	int vertex;
 	GraphNode* link;
 }GraphNode;
-
 typedef struct GraphType {
 	int n; //vertex 개수
 	GraphNode* adj_list[MAX]; //vertex 개수 크기의 포인터 배열
