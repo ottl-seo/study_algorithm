@@ -1,4 +1,4 @@
-
+/* dfs _ matrix 복습 */
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX 50
@@ -38,7 +38,23 @@ void dfs_matrix(GraphType* g, int value) {
 	visited[value] = true;
 	printf("vertex%d ", value);
 	for (w = 0; w < g->n; w++) {
-		if (g->adj_matrix[value][w] && !visited[w])
+		if (g->adj_matrix[value][w]==1 && !visited[w]) //아직 방문 안했고 값이 있으면 dfs 다시 
 			dfs_matrix(g, w);
 	}
+}
+int main() {
+	GraphType* g;
+	g = (GraphType*)malloc(sizeof(GraphType));
+	init(g);
+	for (int i = 0; i < 4; i++)
+		insert_vertex(g, i);
+	insert_edge(g, 0, 1);
+	insert_edge(g, 0, 2);
+	insert_edge(g, 0, 3);
+	insert_edge(g, 1, 2);
+	insert_edge(g, 2, 3);
+	dfs_matrix(g,0);
+
+	free(g);
+	return 0;
 }
