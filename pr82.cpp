@@ -7,20 +7,20 @@
 #define INF 1000L
 
 typedef struct GraphType {
-	int n; //¼±ÅÃµÈ vertexÀÇ ÁıÇÕ
+	int n; //ì„ íƒëœ vertexì˜ ì§‘í•©
 	int weight[MAX_VERTICES][MAX_VERTICES]; 
 }GraphType;
 
-int found[MAX_VERTICES]; //¼±ÅÃµÈ vertexÀÇ ÁıÇÕ
-int distance[MAX_VERTICES]; //spanning tree³»ÀÇ vertex¿¡¼­ °¢ vertex±îÁöÀÇ distance
+int found[MAX_VERTICES]; //ì„ íƒëœ vertexì˜ ì§‘í•©
+int distance[MAX_VERTICES]; //spanning treeë‚´ì˜ vertexì—ì„œ ê° vertexê¹Œì§€ì˜ distance
 
-int choose(int distance[], int n, int found[]) { //sp ÁıÇÕÀ¸·ÎºÎÅÍ °¡Àå ÂªÀº dist¸¦ °®´Â vertex ¹İÈ¯
+int choose(int distance[], int n, int found[]) { //sp ì§‘í•©ìœ¼ë¡œë¶€í„° ê°€ì¥ ì§§ì€ distë¥¼ ê°–ëŠ” vertex ë°˜í™˜
 	int i, min, min_vertex;
 	min = INT_MAX;
 	min_vertex = -1;
 	for (i = 0; i < n; i++) {
 		if (distance[i] < min && !found[i]) {
-			min = distance[i]; //¾ÆÁ÷ ¼±ÅÃ ¾È µÈ ÃÖ¼Ò°Å¸® vertex Ã£±â
+			min = distance[i]; //ì•„ì§ ì„ íƒ ì•ˆ ëœ ìµœì†Œê±°ë¦¬ vertex ì°¾ê¸°
 			min_vertex = i;
 		}
 		return min_vertex;
@@ -29,20 +29,40 @@ int choose(int distance[], int n, int found[]) { //sp ÁıÇÕÀ¸·ÎºÎÅÍ °¡Àå ÂªÀº dis
 void print_status(GraphType* g) {
 	static int step = 1;
 	printf("STEP %d: \n", step++);
-	printf("distance: ");
+	printf(" distance: ");
 	for (int i = 0; i < g->n; i++) {
 		if (distance[i] == INF)
-			printf(" * "); //¹«ÇÑ´ë´Â '*'·Î Ç¥½Ã
+			printf(" * "); //ë¬´í•œëŒ€ëŠ” '*'ë¡œ í‘œì‹œ
 		else
 			printf("%2d ", distance[i]);
 	}
 	printf("\n");
-	printf("found: ");
+	printf(" found: ");
 	for (int i = 0; i < g->n; i++)
 		printf("%2d ", found[i]);
 	printf("\n\n");
 }
-/* void shortest_path(GraphType* g, int start) */
+void shortest_path(GraphType* g, int start) {
+	int i, u, w;
+	for (i = 0; i < g->n; i++) {
+		distance[i] = g->weight[start][i]; //ì´ˆê¸°í™” (start vertexë¡œë¶€í„°ì˜ weightë¥¼ distanceì— ì €ì¥)
+		found[i] = FALSE; //ë¹ˆ vertex ì§‘í•©ìœ¼ë¡œ ì´ˆê¸°í™”
+	}
+	found[start] = TRUE; // start vertex ë°©ë¬¸ í‘œì‹œ
+	distance[start] = 0;
+	printf("<Shortest Path - Dijkstra ê²°ê³¼>\n");
+	for (i = 0; i < g->n - 1; i++) {
+		print_status(g);
+		u = choose(distance, g->n, found);
+		found[u] = TRUE;
+		for (w = 0; w < g->n; w++) {
+			if (!found[w])
+				if (distance[u] + g->weight[u][w] < distance[w])
+					distance[w] = distance[u] + g->weight[u][w];
+		}
+	}
+	print_status(g); //ìµœì¢… ìƒíƒœ ì¶œë ¥
+}
 
 int main() {
 	GraphType g = {
@@ -57,5 +77,7 @@ int main() {
 		{INF,INF,INF,4,5,INF,0}
 		}
 	};
+	shortest_path(&g, 0); //0ë²ˆ vertexì—ì„œ ëª¨ë“  vertexê¹Œì§€ì˜ shortest path
 	
+	return 0;
 }
