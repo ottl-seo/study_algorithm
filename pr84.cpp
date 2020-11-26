@@ -1,4 +1,4 @@
-/* day 67 - ´ÙÀÍ½ºÆ®¶ó ¿À·ù ÇØ°á ¹× º¹½À */
+/* day 67 - ë‹¤ìµìŠ¤íŠ¸ë¼ ì˜¤ë¥˜ í•´ê²° ë° ë³µìŠµ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
@@ -6,27 +6,27 @@
 #define TRUE 1
 #define FALSE 0
 #define MAX_VERTICES 100
-#define INF 1000L //¹«ÇÑ´ë(¿¬°áÀÌ ¾ø´Â °æ¿ì)
+#define INF 1000L //ë¬´í•œëŒ€(ì—°ê²°ì´ ì—†ëŠ” ê²½ìš°)
 
 typedef struct GraphType {
-	int n; //Á¤Á¡ °³¼ö
-	int weight[MAX_VERTICES][MAX_VERTICES]; // °¢ Á¤Á¡ »çÀÌ °Å¸® Ç¥Çö
+	int n; //ì •ì  ê°œìˆ˜
+	int weight[MAX_VERTICES][MAX_VERTICES]; // ê° ì •ì  ì‚¬ì´ ê±°ë¦¬ í‘œí˜„
 }GraphType;
 
-int distance[MAX_VERTICES]; // start vertex·ÎºÎÅÍ °¢ Á¤Á¡±îÁöÀÇ ÃÖ´Ü °Å¸®
-int found[MAX_VERTICES]; //¹æ¹®ÇÑ Á¤Á¡ Ç¥½Ã
+int distance[MAX_VERTICES]; // start vertexë¡œë¶€í„° ê° ì •ì ê¹Œì§€ì˜ ìµœë‹¨ ê±°ë¦¬
+int found[MAX_VERTICES]; //ë°©ë¬¸í•œ ì •ì  í‘œì‹œ
 
-int choose(int distance[], int n, int found[]) { /* distance Áß¿¡¼­ °¡Àå ÂªÀº vertex¹øÈ£¸¦ ¸®ÅÏ */
+int choose(int distance[], int n, int found[]) { /* distance ì¤‘ì—ì„œ ê°€ì¥ ì§§ì€ vertexë²ˆí˜¸ë¥¼ ë¦¬í„´ */
 	int i, min, min_vertex;
 	min = INT_MAX;
-	min_vertex = -1; // ÃÖ¼Ò°Å¸® °®´Â vertex: ¾ø´Â vertex·Î ÀÏ´Ü ÃÊ±âÈ­
+	min_vertex = -1; // ìµœì†Œê±°ë¦¬ ê°–ëŠ” vertex: ì—†ëŠ” vertexë¡œ ì¼ë‹¨ ì´ˆê¸°í™”
 	for (i = 0; i < n; i++) {
 		if (distance[i] < min && !found[i]){
-			min = distance[i]; // min°ª °»½Å
-			min_vertex = i; //ÃÖ¼Ò°Å¸® °®´Â vertex
+			min = distance[i]; // minê°’ ê°±ì‹ 
+			min_vertex = i; //ìµœì†Œê±°ë¦¬ ê°–ëŠ” vertex
 		}
 	}
-	return min_vertex; //vertex ¹øÈ£ ¹İÈ¯
+	return min_vertex; //vertex ë²ˆí˜¸ ë°˜í™˜
 }
 void print_status(GraphType* g) {
 	static int step = 1;
@@ -40,30 +40,29 @@ void print_status(GraphType* g) {
 		printf("%2d ", found[i]);
 	printf("\n\n");
 }
-//
-void shortest_path(GraphType* g, int start) { // start_vertex ¹øÈ£ ¹Ş±â
+void shortest_path(GraphType* g, int start) { // start_vertex ë²ˆí˜¸ ë°›ê¸°
 	int i, u, w;
 
-	/* 1.ÃÊ±âÈ­ */
+	/* 1.ì´ˆê¸°í™” */
 	for (int i = 0; i < g->n; i++){
 		found[i] = FALSE;
-		distance[i] = g->weight[start][i]; //start vertex·ÎºÎÅÍÀÇ Á¤Á¡±îÁöÀÇ °Å¸® (1,INF,3 µîµî...)
+		distance[i] = g->weight[start][i]; //start vertexë¡œë¶€í„°ì˜ ì •ì ê¹Œì§€ì˜ ê±°ë¦¬ (1,INF,3 ë“±ë“±...)
 	}
-	/* 2.start vertex ¼³Á¤ */
+	/* 2.start vertex ì„¤ì • */
 	found[start] = TRUE;
 	distance[start] = 0;
 
-	/* 3.ÃÖ´Ü vertex¸¦ Ã£¾Æ¼­ found¿¡ Ãß°¡ */
+	/* 3.ìµœë‹¨ vertexë¥¼ ì°¾ì•„ì„œ foundì— ì¶”ê°€ */
 	for (int i = 0; i < g->n - 1; i++) {
-		print_status(g); //step Ãâ·Â
-		u = choose(distance, g->n, found); // Á¦ÀÏ ÀÛÀº distance °®´Â vertex ¹İÈ¯ == u
+		print_status(g); //step ì¶œë ¥
+		u = choose(distance, g->n, found); // ì œì¼ ì‘ì€ distance ê°–ëŠ” vertex ë°˜í™˜ == u
 		found[u] = TRUE;
 
-		/* 4.u¸¦ °ÅÃÄ°¡´Â °Ô ´õ ÂªÀ» °æ¿ì, °»½Å */
+		/* 4.uë¥¼ ê±°ì³ê°€ëŠ” ê²Œ ë” ì§§ì„ ê²½ìš°, ê°±ì‹  */
 		for (w = 0; w < g->n; w++) {
-			if (!found[w]) { // !found ÁÖÀÇ...
-				if (distance[u] + g->weight[u][w] < distance[w]) //´õ ÂªÀ» °æ¿ì
-					distance[w] = distance[u] + g->weight[u][w]; // distance[w]°ª °»½Å
+			if (!found[w]) { // !found ì£¼ì˜...
+				if (distance[u] + g->weight[u][w] < distance[w]) //ë” ì§§ì„ ê²½ìš°
+					distance[w] = distance[u] + g->weight[u][w]; // distance[w]ê°’ ê°±ì‹ 
 			}
 		}
 	}
@@ -81,7 +80,7 @@ int main() {
 		{INF,INF,INF,4,5,INF,0}
 		}
 	};
-	shortest_path(&g, 0); //0¹ø vertex¿¡¼­ ¸ğµç vertex±îÁöÀÇ shortest path
+	shortest_path(&g, 0); //0ë²ˆ vertexì—ì„œ ëª¨ë“  vertexê¹Œì§€ì˜ shortest path
 
 	return 0;
 }
