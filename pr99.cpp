@@ -45,30 +45,6 @@ TreeNode* max_value_node(TreeNode* node) { // max_value_node(root->left)에 사�
 	while (current->right) current = current->right; //right가 있을 경우에 계속 
 	return current;
 }
-TreeNode* delete_node(TreeNode* root, int key) { //key값을 갖는 노드 삭제
-	if (root == NULL) return NULL; // 0. empty 처리
-	else if (key < root->key) root->left = delete_node(root->left, key); 
-	else if (key > root->key) root->right = delete_node(root->right, key); // 1. key대소 여부 비교해서, delete 왼/오 재귀 호출
-	else { 
-		/* CASE 1,2: 말단노드이거나 child 1개일 경우 */
-		if (root->left == NULL) { //left가 NULL일 경우--> right를 temp로- root free- return temp
-			TreeNode* temp = root->right;
-			free(root);
-			return temp;
-		}
-		else if (root->right == NULL) {
-			TreeNode* temp = root->left;
-			free(root);
-			return temp;
-		}
-		/* CASE 3. child 2개일 경우 */
-		TreeNode* temp = min_value_node(root->right); // 3-1. right child에서 가장 가까운 key값 갖는 노드 찾기
-		root->key = temp->key; // 3-2. 가장 가까운 key값을 삭제할 위치(root)에 복사-
-		root->right = delete_node(root->right, temp->key); // 3-3. root->right에 delete_node(root->right)...(복사된 값을 갖고있던 노드 삭제)
-	}
-	return root; //새로운 root 반환
-}
-
 TreeNode* new_delete_node(TreeNode* root, int key) { //key값을 갖는 노드 삭제
 	if (root == NULL) return NULL; // 0. empty 경우
 	else if (key < root->key) root->left = new_delete_node(root->left, key);
@@ -88,12 +64,15 @@ TreeNode* new_delete_node(TreeNode* root, int key) { //key값을 갖는 노드 �
 		TreeNode* right_min = min_value_node(root->right);
 		TreeNode* left_max = max_value_node(root->left);
 		printf("-- right_min = %d\n-- left_max = %d\n", right_min->key, left_max->key);
+		printf("* original value = %d | ", key);
 
 		if (abs(right_min->key - key) <= abs(left_max->key - key)) { //right가 더 작을 경우
+			printf("new value = %d\n", right_min->key);
 			root->key = right_min->key;
 			root->right = delete_node(root->right, right_min->key); //복사해둔 값을 갖는 노드 삭제
 		}
 		else {
+			printf("new value = %d\n", left_max->key);
 			root->key = left_max->key;
 			root->left = delete_node(root->left, left_max->key); //복사해둔 값을 갖는 노드 삭제
 		}
