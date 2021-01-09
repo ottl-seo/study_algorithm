@@ -15,11 +15,8 @@ public class Song {
 		System.out.println(this.price+"원입니다.");
 		// this.price로 객체를 찾아가 값을 얻어옴
 	}
-	
-
-	
-
 }
+
 
 import java.util.Scanner;
 public class Week3_1_김윤서 {
